@@ -1,1 +1,490 @@
-<h1>BRIDGE Workshop</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Language to Daily Living — Workshop @ IEEE BIBM 2026</title>
+<meta name="description" content="A workshop on human–AI interaction as digital indicators for early cognitive decline and their implications for caregiving. In conjunction with IEEE BIBM 2026, Dallas, TX.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#1a1a1a;
+    --soft:#444;
+    --faint:#6b6b6b;
+    --accent:#1b4965;
+    --accent-2:#2a6f8e;
+    --line:#e4e4e4;
+    --line-strong:#cdcdcd;
+    --bg:#ffffff;
+    --bg-alt:#f7f8f9;
+    --max:880px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:70px}
+  body{font-family:"Source Sans 3",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  h1,h2,h3,h4{font-family:"Source Serif 4",Georgia,serif;line-height:1.2;font-weight:600;color:var(--ink)}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+  /* ---------- NAV ---------- */
+  nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:1080px;margin:0 auto;padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between}
+  .nav-brand{font-family:"Source Serif 4",serif;font-weight:600;font-size:1rem;color:var(--ink)}
+  .nav-brand span{color:var(--accent)}
+  .nav-links{display:flex;gap:24px;align-items:center}
+  .nav-links a{color:var(--soft);font-size:.92rem;font-weight:500}
+  .nav-links a:hover{color:var(--accent);text-decoration:none}
+  .nav-links a.cta{background:var(--accent);color:#fff;padding:7px 15px;border-radius:5px}
+  .nav-links a.cta:hover{background:var(--accent-2)}
+  .menu-btn{display:none;background:none;border:0;cursor:pointer;color:var(--ink);padding:6px}
+
+  /* ---------- HERO / BANNER ---------- */
+  .hero{position:relative;overflow:hidden;background:#0b2233;border-bottom:3px solid var(--accent)}
+  .hero svg.sky{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,20,32,.30) 0%,rgba(8,20,32,.20) 45%,rgba(8,20,32,.72) 100%)}
+  .hero-content{position:relative;z-index:2;max-width:960px;margin:0 auto;padding:84px 24px 56px;text-align:center;color:#fff}
+  .hero-kicker{font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#cfe3ee;margin-bottom:18px}
+  .hero h1{color:#fff;font-size:clamp(1.9rem,4.6vw,3rem);font-weight:700;letter-spacing:-.01em;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+  .hero .sub{font-family:"Source Serif 4",serif;font-style:italic;font-size:clamp(1.05rem,2.2vw,1.3rem);color:#e9f1f6;margin-top:16px;font-weight:400;max-width:680px;margin-left:auto;margin-right:auto;text-shadow:0 1px 12px rgba(0,0,0,.4)}
+  .hero-meta{margin-top:26px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 14px;font-size:.95rem}
+  .hero-meta .m{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(2px);padding:7px 14px;border-radius:999px;font-weight:500;color:#fff}
+  .hero-contact{margin-top:22px;font-size:.92rem;color:#dce8ef}
+  .hero-contact a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+
+  /* ---------- CONTENT ---------- */
+  main{padding:8px 0 0}
+  section{padding:48px 0;border-bottom:1px solid var(--line)}
+  section:last-of-type{border-bottom:0}
+  .sec-label{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:8px}
+  h2{font-size:1.7rem;margin-bottom:18px}
+  h2 .anchor{scroll-margin-top:70px}
+  p{margin-bottom:16px;color:var(--soft)}
+  p.lead{font-size:1.08rem;color:var(--ink)}
+  strong{color:var(--ink);font-weight:600}
+  .muted{color:var(--faint);font-size:.92rem}
+
+  /* news bar */
+  .news-wrap{background:var(--bg-alt);border-bottom:1px solid var(--line)}
+  .news{max-width:var(--max);margin:0 auto;padding:24px 24px}
+  .news h2{font-size:1.15rem;display:flex;align-items:center;gap:11px;margin-bottom:14px}
+  .news .tag{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 9px;border-radius:4px;font-family:"Source Sans 3",sans-serif}
+  .news ul{list-style:none}
+  .news li{display:flex;gap:14px;padding:8px 0;border-bottom:1px dotted var(--line);font-size:.96rem;color:var(--soft)}
+  .news li:last-child{border-bottom:0}
+  .news li .date{flex:none;width:92px;color:var(--accent);font-weight:600}
+
+  /* topics */
+  .topic{margin-bottom:24px}
+  .topic h3{font-size:1.12rem;color:var(--accent);margin-bottom:8px;display:flex;align-items:baseline;gap:10px}
+  .topic h3 .n{font-family:"Source Sans 3",sans-serif;font-size:.75rem;font-weight:700;color:#fff;background:var(--accent);border-radius:4px;padding:2px 8px;letter-spacing:.05em}
+  .topic ul{list-style:none;padding-left:2px}
+  .topic li{position:relative;padding-left:20px;margin-bottom:6px;color:var(--soft)}
+  .topic li::before{content:"–";position:absolute;left:0;color:var(--accent-2);font-weight:700}
+
+  /* tables */
+  table{width:100%;border-collapse:collapse;margin:6px 0 4px;font-size:.96rem}
+  th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{background:var(--bg-alt);font-family:"Source Sans 3",sans-serif;font-weight:700;color:var(--ink);font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;border-bottom:2px solid var(--line-strong)}
+  tbody tr:hover{background:var(--bg-alt)}
+  td.when,th.when{white-space:nowrap;color:var(--accent);font-weight:600;font-variant-numeric:tabular-nums}
+  tr.key td:first-child{font-weight:600;color:var(--ink)}
+  .table-note{font-size:.86rem;color:var(--faint);margin-top:10px;font-style:italic}
+
+  /* organizers */
+  .org-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:6px}
+  .org{padding:0}
+  .org .name{font-family:"Source Serif 4",serif;font-size:1.12rem;font-weight:600}
+  .org .aff{color:var(--accent);font-weight:600;font-size:.9rem;margin:3px 0 2px}
+  .org .role{font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);margin-bottom:8px}
+  .org .bio{font-size:.9rem;color:var(--soft);line-height:1.55}
+
+  /* TBA */
+  .tba{background:var(--bg-alt);border:1px dashed var(--line-strong);border-radius:8px;padding:30px 24px;text-align:center}
+  .tba .t{font-family:"Source Serif 4",serif;font-size:1.2rem;font-weight:600;color:var(--ink);margin-bottom:6px}
+  .tba .d{color:var(--faint);font-size:.95rem}
+
+  /* style chips */
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .chip{font-size:.84rem;background:var(--bg-alt);border:1px solid var(--line);border-radius:5px;padding:5px 11px;color:var(--soft)}
+
+  /* footer */
+  footer{background:#0b2233;color:#b9cad6;padding:38px 0 30px;font-size:.9rem}
+  footer .wrap{max-width:1080px}
+  footer a{color:#dbe7ee}
+  footer .f-title{font-family:"Source Serif 4",serif;color:#fff;font-size:1.05rem;font-weight:600;margin-bottom:6px}
+  footer .f-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid rgba(255,255,255,.14);margin-top:22px;padding-top:18px;font-size:.82rem;color:#8ba3b3}
+  .refs{margin-top:26px;font-size:.78rem;color:#90a6b4;line-height:1.55}
+  .refs h4{color:#cfe0ea;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-family:"Source Sans 3",sans-serif;font-weight:700}
+  .refs ol{padding-left:18px}
+  .refs li{margin-bottom:5px}
+
+  @media(max-width:760px){
+    .nav-links{position:fixed;top:58px;left:0;right:0;flex-direction:column;align-items:stretch;background:#fff;border-bottom:1px solid var(--line);padding:8px 24px 16px;gap:0;transform:translateY(-150%);transition:transform .3s ease}
+    .nav-links.open{transform:none}
+    .nav-links a{padding:12px 0;border-bottom:1px solid var(--line)}
+    .nav-links a.cta{margin-top:10px;text-align:center;border-bottom:0}
+    .menu-btn{display:block}
+    .org-grid{grid-template-columns:1fr;gap:18px}
+    th,td{padding:10px}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="nav-brand">Language <span>→</span> Daily Living</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#news">News</a>
+      <a href="#overview">Overview</a>
+      <a href="#cfp">Call for Papers</a>
+      <a href="#dates">Dates</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#organizers">Organizers</a>
+      <a href="#cfp" class="cta">Submit</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO with Dallas skyline (inline SVG; replace with a photo if desired) -->
+<header class="hero" id="top">
+  <svg class="sky" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" aria-label="Dallas skyline at dusk">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#10324c"/>
+        <stop offset="0.45" stop-color="#27506b"/>
+        <stop offset="0.74" stop-color="#7a6a73"/>
+        <stop offset="0.9" stop-color="#d99362"/>
+        <stop offset="1" stop-color="#f0b277"/>
+      </linearGradient>
+      <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+        <stop offset="0" stop-color="#ffd9a0" stop-opacity="0.9"/>
+        <stop offset="1" stop-color="#ffd9a0" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="bld" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#0c2535"/>
+        <stop offset="1" stop-color="#081a27"/>
+      </linearGradient>
+    </defs>
+
+    <rect width="1440" height="520" fill="url(#sky)"/>
+    <circle cx="980" cy="430" r="220" fill="url(#sun)"/>
+
+    <!-- distant skyline layer -->
+    <g fill="#16384f" opacity="0.55">
+      <rect x="60" y="330" width="70" height="190"/>
+      <rect x="150" y="300" width="55" height="220"/>
+      <rect x="1180" y="320" width="64" height="200"/>
+      <rect x="1270" y="345" width="80" height="175"/>
+      <rect x="1360" y="310" width="60" height="210"/>
+    </g>
+
+    <!-- main skyline silhouette -->
+    <g fill="url(#bld)">
+      <rect x="120" y="300" width="78" height="220"/>
+      <rect x="210" y="250" width="58" height="270"/>
+      <!-- Bank of America Plaza style tower -->
+      <rect x="300" y="150" width="64" height="370"/>
+      <polygon points="300,150 332,120 364,150"/>
+      <rect x="392" y="280" width="70" height="240"/>
+      <!-- Fountain Place style angular tower -->
+      <polygon points="486,520 486,210 540,150 594,210 594,520"/>
+      <rect x="624" y="240" width="62" height="280"/>
+      <rect x="712" y="190" width="74" height="330"/>
+      <polygon points="712,190 749,160 786,190"/>
+      <rect x="430" y="360" width="40" height="160"/>
+      <rect x="666" y="330" width="34" height="190"/>
+    </g>
+
+    <!-- Reunion Tower: thin pole + ball -->
+    <g>
+      <rect x="862" y="240" width="14" height="280" fill="url(#bld)"/>
+      <circle cx="869" cy="232" r="34" fill="#0c2535"/>
+      <circle cx="869" cy="232" r="34" fill="none" stroke="#3f6f8c" stroke-width="2"/>
+      <!-- ball lights -->
+      <g fill="#ffd27a">
+        <circle cx="852" cy="226" r="2.2"/><circle cx="862" cy="220" r="2.2"/><circle cx="874" cy="218" r="2.2"/>
+        <circle cx="884" cy="224" r="2.2"/><circle cx="848" cy="238" r="2.2"/><circle cx="860" cy="240" r="2.2"/>
+        <circle cx="876" cy="240" r="2.2"/><circle cx="888" cy="236" r="2.2"/><circle cx="869" cy="232" r="2.2"/>
+      </g>
+    </g>
+
+    <!-- more towers right of Reunion -->
+    <g fill="url(#bld)">
+      <rect x="920" y="220" width="80" height="300"/>
+      <rect x="1014" y="280" width="56" height="240"/>
+      <rect x="1086" y="200" width="70" height="320"/>
+      <polygon points="1086,200 1121,168 1156,200"/>
+    </g>
+
+    <!-- window lights -->
+    <g fill="#ffe2a8" opacity="0.85">
+      <!-- generated grid-ish dots on a few towers -->
+      <g>
+        <rect x="312" y="180" width="4" height="6"/><rect x="324" y="180" width="4" height="6"/><rect x="336" y="180" width="4" height="6"/><rect x="348" y="180" width="4" height="6"/>
+        <rect x="312" y="210" width="4" height="6"/><rect x="336" y="210" width="4" height="6"/><rect x="348" y="210" width="4" height="6"/>
+        <rect x="324" y="240" width="4" height="6"/><rect x="336" y="240" width="4" height="6"/>
+        <rect x="312" y="270" width="4" height="6"/><rect x="348" y="270" width="4" height="6"/>
+        <rect x="312" y="320" width="4" height="6"/><rect x="324" y="320" width="4" height="6"/><rect x="348" y="320" width="4" height="6"/>
+      </g>
+      <g>
+        <rect x="724" y="220" width="4" height="6"/><rect x="736" y="220" width="4" height="6"/><rect x="760" y="220" width="4" height="6"/><rect x="772" y="220" width="4" height="6"/>
+        <rect x="724" y="250" width="4" height="6"/><rect x="748" y="250" width="4" height="6"/><rect x="772" y="250" width="4" height="6"/>
+        <rect x="736" y="290" width="4" height="6"/><rect x="760" y="290" width="4" height="6"/>
+        <rect x="724" y="330" width="4" height="6"/><rect x="772" y="330" width="4" height="6"/>
+      </g>
+      <g>
+        <rect x="934" y="250" width="4" height="6"/><rect x="950" y="250" width="4" height="6"/><rect x="970" y="250" width="4" height="6"/><rect x="986" y="250" width="4" height="6"/>
+        <rect x="934" y="285" width="4" height="6"/><rect x="970" y="285" width="4" height="6"/><rect x="986" y="285" width="4" height="6"/>
+        <rect x="950" y="320" width="4" height="6"/><rect x="986" y="320" width="4" height="6"/>
+      </g>
+      <g>
+        <rect x="1098" y="230" width="4" height="6"/><rect x="1114" y="230" width="4" height="6"/><rect x="1136" y="230" width="4" height="6"/>
+        <rect x="1098" y="270" width="4" height="6"/><rect x="1136" y="270" width="4" height="6"/>
+        <rect x="1114" y="310" width="4" height="6"/><rect x="1136" y="310" width="4" height="6"/>
+      </g>
+      <g>
+        <rect x="504" y="250" width="4" height="6"/><rect x="540" y="250" width="4" height="6"/><rect x="572" y="250" width="4" height="6"/>
+        <rect x="520" y="300" width="4" height="6"/><rect x="556" y="300" width="4" height="6"/>
+        <rect x="540" y="350" width="4" height="6"/>
+      </g>
+    </g>
+  </svg>
+
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-kicker">Workshop · IEEE BIBM 2026</div>
+    <h1>From Language to Daily Living</h1>
+    <p class="sub">Human–AI interaction as digital indicators for early cognitive decline and their implications for caregiving</p>
+    <div class="hero-meta">
+      <span class="m">📍 Dallas, TX, USA</span>
+      <span class="m">📅 December 1–4, 2026</span>
+      <span class="m">💻 Hybrid (Onsite + Online)</span>
+    </div>
+    <div class="hero-contact">Contact: <a href="mailto:your-email@ou.edu">your-email@ou.edu</a></div>
+  </div>
+</header>
+
+<!-- NEWS -->
+<div class="news-wrap" id="news">
+  <div class="news">
+    <h2><span class="tag">News</span> Latest Updates</h2>
+    <ul>
+      <li><span class="date">Jun 2026</span><span>Our proposal has been <strong>accepted at IEEE BIBM 2026</strong> — see you in Dallas this December!</span></li>
+      <li><span class="date">Upcoming</span><span>Call for Papers is open. Paper submissions are due <strong>September 27, 2026</strong>.</span></li>
+      <li><span class="date">Soon</span><span>Keynote speakers and program committee will be announced here.</span></li>
+    </ul>
+  </div>
+</div>
+
+<main>
+<div class="wrap">
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <div class="sec-label">About</div>
+    <h2>Overview</h2>
+    <p class="lead">Can the way people talk every day tell us something about their cognitive health?</p>
+    <p>Standard tests for Alzheimer's and other cognitive decline often miss what shows up in ordinary conversation — losing track of a topic, or struggling to fix a misunderstanding. These everyday breakdowns matter for how well older adults live on their own.</p>
+    <p>AI conversational agents are now part of many older adults' daily lives. The conversations they have are a natural, real-world way to observe cognitive function — capturing not just <em>what</em> people say, but <em>how</em> their communication changes over time.</p>
+    <p>This workshop connects the <strong>AI / NLP community and the clinical dementia community</strong> to turn these interaction signals into useful digital indicators for care. It spans three areas: <strong>NLP, HCI, and clinical science</strong>.</p>
+  </section>
+
+  <!-- CALL FOR PAPERS -->
+  <section id="cfp">
+    <div class="sec-label">Call for Papers</div>
+    <h2>Topics of Interest</h2>
+    <p>We welcome research papers, position papers, and work in progress on five themes:</p>
+
+    <div class="topic">
+      <h3><span class="n">01</span> From Language to Interaction Signals</h3>
+      <ul>
+        <li>Speech, linguistic, and discourse features as indicators of cognitive decline</li>
+        <li>Acoustic and prosodic signals for detecting early cognitive change</li>
+        <li>Extending language-based assessment from isolated tasks to interactive settings</li>
+      </ul>
+    </div>
+    <div class="topic">
+      <h3><span class="n">02</span> From Interaction to Behavioral Indicators</h3>
+      <ul>
+        <li>Conversational dynamics (e.g., topic maintenance) as indicators of cognitive function</li>
+        <li>Response latency, repetition, and breakdown patterns in real-world interaction</li>
+        <li>Modeling communication as a dynamic process rather than static performance</li>
+      </ul>
+    </div>
+    <div class="topic">
+      <h3><span class="n">03</span> From Interaction Data to Digital Indicators</h3>
+      <ul>
+        <li>Computational methods for extracting interpretable interaction-level indicators</li>
+        <li>Longitudinal modeling of cognitive change from continuous interaction data</li>
+        <li>Multimodal integration of language, speech, and behavioral signals</li>
+        <li>Data-driven approaches for interaction-aware cognitive monitoring</li>
+      </ul>
+    </div>
+    <div class="topic">
+      <h3><span class="n">04</span> Translational Implications for Care &amp; Monitoring</h3>
+      <ul>
+        <li>Interaction-based indicators supporting clinical interpretation and caregiving decisions</li>
+        <li>Integration of interaction-derived signals into clinical and real-world monitoring workflows</li>
+        <li>Passive and continuous monitoring in AI-enabled environments</li>
+      </ul>
+    </div>
+    <div class="topic">
+      <h3><span class="n">05</span> Foundations: Ethics, Fairness &amp; Infrastructure</h3>
+      <ul>
+        <li>Privacy-preserving methods for continuous cognitive monitoring</li>
+        <li>Fairness and bias across linguistic and demographic populations</li>
+        <li>Datasets and evaluation frameworks for interaction-based cognitive research</li>
+        <li>Ethical and regulatory considerations for AI-assisted cognitive systems</li>
+      </ul>
+    </div>
+    <p class="muted" style="margin-top:18px">Submissions follow the IEEE BIBM 2026 workshop guidelines. Formatting instructions and the submission portal link will be posted here once available.</p>
+  </section>
+
+  <!-- DATES -->
+  <section id="dates">
+    <div class="sec-label">Timeline</div>
+    <h2>Important Dates</h2>
+    <table>
+      <thead><tr><th>Milestone</th><th class="when">Date</th></tr></thead>
+      <tbody>
+        <tr><td>Workshop paper submission due</td><td class="when">September 27, 2026</td></tr>
+        <tr><td>Notification of acceptance</td><td class="when">October 18, 2026</td></tr>
+        <tr><td>Camera-ready submission due</td><td class="when">November 8, 2026</td></tr>
+        <tr class="key"><td>Workshop dates</td><td class="when">December 1–4, 2026</td></tr>
+      </tbody>
+    </table>
+    <p class="table-note">All dates are tentative and will be confirmed on the official BIBM 2026 site. Deadlines are 23:59 AoE.</p>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section id="schedule">
+    <div class="sec-label">Program</div>
+    <h2>Tentative Schedule</h2>
+    <p>The workshop is a <strong>full-day event</strong> featuring keynote talks, oral paper sessions, and a panel discussion, with breaks for community exchange. A detailed agenda will be posted closer to the event.</p>
+    <table>
+      <thead><tr><th class="when">Time</th><th>Session</th></tr></thead>
+      <tbody>
+        <tr><td class="when">09:00 – 09:10</td><td>Opening Remarks</td></tr>
+        <tr><td class="when">09:10 – 09:50</td><td>Keynote I</td></tr>
+        <tr><td class="when">09:50 – 10:40</td><td>Oral Session 1 — Contributed Talks</td></tr>
+        <tr><td class="when">10:40 – 11:00</td><td>Coffee Break</td></tr>
+        <tr><td class="when">11:00 – 11:40</td><td>Keynote II</td></tr>
+        <tr><td class="when">11:40 – 12:30</td><td>Oral Session 2 — Contributed Talks</td></tr>
+        <tr><td class="when">12:30 – 13:45</td><td>Lunch Break</td></tr>
+        <tr><td class="when">13:45 – 14:45</td><td>Oral Session 3 — Contributed Talks</td></tr>
+        <tr><td class="when">14:45 – 15:45</td><td>Panel Discussion — Bridging NLP, HCI &amp; Clinical Science</td></tr>
+        <tr><td class="when">15:45 – 16:05</td><td>Coffee Break</td></tr>
+        <tr><td class="when">16:05 – 16:50</td><td>Interactive Discussion &amp; Open Problems</td></tr>
+        <tr><td class="when">16:50 – 17:00</td><td>Closing Remarks</td></tr>
+      </tbody>
+    </table>
+    <p class="table-note">Tentative — subject to change. Times shown in local Dallas time (CST).</p>
+    <div class="chips">
+      <span class="chip">Keynote talks</span>
+      <span class="chip">Oral sessions</span>
+      <span class="chip">Panel discussion</span>
+      <span class="chip">Hybrid participation</span>
+    </div>
+  </section>
+
+  <!-- ORGANIZERS -->
+  <section id="organizers">
+    <div class="sec-label">Organizing Committee</div>
+    <h2>Program Chairs</h2>
+    <div class="org-grid">
+      <div class="org">
+        <div class="name">Ziming Liu</div>
+        <div class="aff">University of Oklahoma</div>
+        <div class="role">Assistant Professor, CS</div>
+        <div class="bio">Researches human–AI interaction and computational modeling of communication in cognitive health. Leads the interaction-centered paradigm of the workshop, bridging NLP, HCI, and clinical applications.</div>
+      </div>
+      <div class="org">
+        <div class="name">Hiroko Dodge</div>
+        <div class="aff">Harvard Medical School · MGB</div>
+        <div class="role">Professor of Neurology</div>
+        <div class="bio">Studies social interaction and conversational engagement in cognitive health, leading large-scale longitudinal RCTs such as the I-CONECT study. Provides clinical guidance and context for the workshop.</div>
+      </div>
+      <div class="org">
+        <div class="name">Wenpeng Yin</div>
+        <div class="aff">Penn State University</div>
+        <div class="role">Assistant Professor, CS</div>
+        <div class="bio">Works on NLP and LLMs with an emphasis on human-centered AI and computational modeling of language, reasoning, and knowledge. Contributes NLP/LLM methodologies for modeling interaction-based signals.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEYNOTES -->
+  <section id="keynotes">
+    <div class="sec-label">Program</div>
+    <h2>Keynote Speakers</h2>
+    <div class="tba">
+      <div class="t">To be announced</div>
+      <div class="d">Keynote speakers will be confirmed and announced here in the coming months.</div>
+    </div>
+    <!-- Prospective keynote speakers (NOT yet contacted) kept here for reference:
+         Justine Cassell (Carnegie Mellon University) — human–AI interaction, conversational agents, social cognition.
+         Timothy Althoff (University of Washington) — language, behavior & health; conversational dynamics and health outcomes.
+         Publish only after invitations are accepted. -->
+  </section>
+
+  <!-- COMMITTEE -->
+  <section id="committee">
+    <div class="sec-label">Review</div>
+    <h2>Program Committee</h2>
+    <div class="tba">
+      <div class="t">To be announced</div>
+      <div class="d">The program committee is being assembled and will be listed here once confirmed.</div>
+    </div>
+    <!-- Prospective program committee (invitations pending, NOT yet contacted):
+         Frank Rudzicz (Dalhousie University); Brian MacWhinney (Carnegie Mellon University);
+         Kathleen C. Fraser (University of Ottawa); Munmun De Choudhury (Georgia Tech);
+         Carolyn Rosé (Carnegie Mellon University); Rada Mihalcea (University of Michigan).
+         Publish only after invitations are accepted. -->
+  </section>
+
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="f-title">From Language to Daily Living</div>
+    <p style="max-width:60ch">A workshop on human–AI interaction as digital indicators for early cognitive decline and their implications for caregiving, held in conjunction with IEEE BIBM 2026 in Dallas, TX.</p>
+    <p style="margin-top:6px">Contact: <a href="mailto:your-email@ou.edu">your-email@ou.edu</a> &nbsp;·&nbsp; <a href="https://ieeebibm.org/BIBM2026/" target="_blank" rel="noopener">IEEE BIBM 2026 →</a></p>
+
+    <div class="refs">
+      <h4>References</h4>
+      <ol>
+        <li>Themistocleous C. Discourse and conversation impairments in patients with dementia. <em>Spoken Discourse Impairments in the Neurogenic Populations</em>, 2024:37–51.</li>
+        <li>Woodward M. Aspects of communication in Alzheimer's disease. <em>International Psychogeriatrics</em>, 2013;25(6):877–85.</li>
+        <li>Banovic S, Zunic LJ, Sinanovic O. Communication Difficulties as a Result of Dementia. <em>Mater Sociomed</em>, 2018;30(3):221–4.</li>
+        <li>Fraser KC, Meltzer JA, Rudzicz F. Linguistic features identify Alzheimer's disease in narrative speech. <em>J Alzheimer's Disease</em>, 2015;49(2):407–22.</li>
+        <li>Luz S, Haider F, de la Fuente Garcia S, Fromm D, MacWhinney B. Editorial: Alzheimer's Dementia Recognition through Spontaneous Speech. <em>Front Comput Sci</em>, 2021;3.</li>
+      </ol>
+    </div>
+
+    <div class="f-row">
+      <span>© <span id="year"></span> From Language to Daily Living Workshop · Speaker &amp; committee lists to be announced.</span>
+      <span>Hosted on GitHub Pages</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const btn=document.getElementById('menuBtn'),links=document.getElementById('navLinks');
+  btn.addEventListener('click',()=>links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+  document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
