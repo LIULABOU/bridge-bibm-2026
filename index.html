@@ -8,10 +8,12 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 
 <style>
+  /* ---------- GLOBAL ---------- */
   :root{
+    /* adjusted typographic tokens for easier tuning */
     --ink:#1a1a1a;
     --soft:#444;
     --faint:#6b6b6b;
@@ -21,21 +23,38 @@
     --line-strong:#cdcdcd;
     --bg:#ffffff;
     --bg-alt:#f7f8f9;
-    --max:880px;
+    --max:920px;           /* content column width */
+    --base-size:16px;      /* base font size (change to 15/17 to preview) */
+    --base-line:1.78;      /* comfortable line-height for long text */
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;scroll-padding-top:70px}
-  body{font-family:"Source Sans 3",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  html{scroll-behavior:smooth;scroll-padding-top:70px;font-size:var(--base-size)}
+  body{
+    font-family:"Inter", "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:var(--base-line);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    -webkit-font-feature-settings:"liga" 1;
+    hyphens:auto;
+    font-size:1rem; /* uses html font-size variable */
+  }
   a{color:var(--accent);text-decoration:none}
   a:hover{text-decoration:underline}
-  h1,h2,h3,h4{font-family:"Source Serif 4",Georgia,serif;line-height:1.2;font-weight:600;color:var(--ink)}
-  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  h1,h2,h3,h4{font-family:"Source Serif 4",Georgia,serif;line-height:1.15;font-weight:600;color:var(--ink)}
+  h2{font-size:clamp(1.45rem,2.6vw,1.95rem);margin-bottom:22px}
+  h3{font-size:1.05rem}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+
+  p{margin-bottom:18px;color:var(--soft);font-size:1rem}
+  p.lead{font-size:1.125rem;color:var(--ink);margin-bottom:20px}
 
   /* ---------- NAV ---------- */
   nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
   .nav-inner{max-width:1080px;margin:0 auto;padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between}
-  .nav-brand{font-family:"Source Serif 4",serif;font-weight:600;font-size:1rem;color:var(--ink)}
-  .nav-brand span{color:var(--accent)}
+  .nav-brand{display:flex;align-items:center;color:var(--ink);line-height:0}
+  .nav-brand img{display:block;height:34px;width:auto}
   .nav-links{display:flex;gap:24px;align-items:center}
   .nav-links a{color:var(--soft);font-size:.92rem;font-weight:500}
   .nav-links a:hover{color:var(--accent);text-decoration:none}
@@ -44,17 +63,15 @@
   .menu-btn{display:none;background:none;border:0;cursor:pointer;color:var(--ink);padding:6px}
 
   /* ---------- HERO / BANNER ---------- */
-  .hero{position:relative;overflow:hidden;background:#0b2233;border-bottom:3px solid var(--accent)}
-  .hero svg.sky{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-  .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,20,32,.30) 0%,rgba(8,20,32,.20) 45%,rgba(8,20,32,.72) 100%)}
-  .hero-content{position:relative;z-index:2;max-width:960px;margin:0 auto;padding:84px 24px 56px;text-align:center;color:#fff}
-  .hero-kicker{font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#cfe3ee;margin-bottom:18px}
-  .hero h1{color:#fff;font-size:clamp(1.9rem,4.6vw,3rem);font-weight:700;letter-spacing:-.01em;text-shadow:0 2px 18px rgba(0,0,0,.35)}
-  .hero .sub{font-family:"Source Serif 4",serif;font-style:italic;font-size:clamp(1.05rem,2.2vw,1.3rem);color:#e9f1f6;margin-top:16px;font-weight:400;max-width:680px;margin-left:auto;margin-right:auto;text-shadow:0 1px 12px rgba(0,0,0,.4)}
+  .hero{position:relative;overflow:hidden;background:#0b2233 url("dallas.jpg") center/cover no-repeat;border-bottom:3px solid var(--accent)}
+  .hero svg.sky{display:none}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,14,24,.28) 0%,rgba(4,14,24,.34) 42%,rgba(4,14,24,.70) 100%)}
+  .hero-content{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:128px 24px 76px;text-align:center;color:#fff}
+  .hero-kicker{font-size:clamp(1.05rem,2vw,1.35rem);letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#fff;margin-bottom:18px;text-shadow:0 2px 16px rgba(0,0,0,.38)}
+  .hero h1{color:#fff;font-size:clamp(1.75rem,3.6vw,3.05rem);font-weight:700;letter-spacing:0;text-shadow:0 3px 24px rgba(0,0,0,.42);max-width:1040px;margin:0 auto}
+  .hero .sub{font-size:clamp(1.05rem,2.2vw,1.25rem);max-width:720px;margin-left:auto;margin-right:auto;color:#fff}
   .hero-meta{margin-top:26px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 14px;font-size:.95rem}
   .hero-meta .m{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(2px);padding:7px 14px;border-radius:999px;font-weight:500;color:#fff}
-  .hero-contact{margin-top:22px;font-size:.92rem;color:#dce8ef}
-  .hero-contact a{color:#fff;text-decoration:underline;text-underline-offset:3px}
 
   /* ---------- CONTENT ---------- */
   main{padding:8px 0 0}
@@ -85,6 +102,9 @@
   .topic ul{list-style:none;padding-left:2px}
   .topic li{position:relative;padding-left:20px;margin-bottom:6px;color:var(--soft)}
   .topic li::before{content:"–";position:absolute;left:0;color:var(--accent-2);font-weight:700}
+  .topic-list{padding-left:22px;margin-top:14px}
+  .topic-list li{margin-bottom:16px;color:var(--soft);font-size:1.03rem;line-height:1.65}
+  .topic-list strong{font-weight:700}
 
   /* tables */
   table{width:100%;border-collapse:collapse;margin:6px 0 4px;font-size:.96rem}
@@ -107,6 +127,16 @@
   .tba{background:var(--bg-alt);border:1px dashed var(--line-strong);border-radius:8px;padding:30px 24px;text-align:center}
   .tba .t{font-family:"Source Serif 4",serif;font-size:1.2rem;font-weight:600;color:var(--ink);margin-bottom:6px}
   .tba .d{color:var(--faint);font-size:.95rem}
+  .speaker-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:8px}
+  .speaker-photo{display:block;width:112px;height:112px;margin-bottom:14px;border-radius:8px;overflow:hidden;background:var(--bg-alt)}
+  .speaker-photo img{display:block;width:100%;height:100%;object-fit:cover}
+  .speaker .name{font-family:"Source Serif 4",serif;font-size:1.18rem;font-weight:600;margin-bottom:4px}
+  .speaker .name a{color:var(--ink)}
+  .speaker .title{color:var(--accent);font-weight:600;font-size:.95rem;line-height:1.45;margin-bottom:10px}
+  .speaker .bio{color:var(--soft);font-size:.95rem;line-height:1.6}
+  .committee-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 32px;margin-top:8px}
+  .committee-member .name{font-family:"Source Serif 4",serif;font-size:1.08rem;font-weight:600;margin-bottom:2px}
+  .committee-member .aff{color:var(--accent);font-weight:600;font-size:.92rem;line-height:1.45}
 
   /* style chips */
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
@@ -130,6 +160,8 @@
     .nav-links a.cta{margin-top:10px;text-align:center;border-bottom:0}
     .menu-btn{display:block}
     .org-grid{grid-template-columns:1fr;gap:18px}
+    .speaker-grid{grid-template-columns:1fr;gap:22px}
+    .committee-grid{grid-template-columns:1fr;gap:16px}
     th,td{padding:10px}
   }
 </style>
@@ -139,15 +171,18 @@
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#top" class="nav-brand">Language <span>→</span> Daily Living</a>
+    <a href="#top" class="nav-brand" aria-label="IEEE BIBM 2026">
+      <img src="bibm-logo.jpg" alt="IEEE BIBM 2026">
+    </a>
     <div class="nav-links" id="navLinks">
       <a href="#news">News</a>
       <a href="#overview">Overview</a>
       <a href="#cfp">Call for Papers</a>
+      <a href="#submission">Submission</a>
       <a href="#dates">Dates</a>
       <a href="#schedule">Schedule</a>
-      <a href="#organizers">Organizers</a>
-      <a href="#cfp" class="cta">Submit</a>
+      <a href="#keynotes">Keynotes</a>
+      <a href="https://wi-lab.com/cyberchair/2026/bibm26/scripts/submit.php?subarea=S48&amp;undisplay_detail=1&amp;wh=/cyberchair/2026/bibm26/scripts/ws_submit.php" class="cta" target="_blank" rel="noopener">Submit</a>
     </div>
     <button class="menu-btn" id="menuBtn" aria-label="Menu">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
@@ -262,15 +297,12 @@
 
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-kicker">Workshop · IEEE BIBM 2026</div>
-    <h1>From Language to Daily Living</h1>
-    <p class="sub">Human–AI interaction as digital indicators for early cognitive decline and their implications for caregiving</p>
+    <div class="hero-kicker">From Language to Daily Living</div>
+    <h1>Human–AI interaction as digital indicators for early cognitive decline and their implications for caregiving</h1>
     <div class="hero-meta">
       <span class="m">📍 Dallas, TX, USA</span>
       <span class="m">📅 December 1–4, 2026</span>
-      <span class="m">💻 Hybrid (Onsite + Online)</span>
     </div>
-    <div class="hero-contact">Contact: <a href="mailto:your-email@ou.edu">your-email@ou.edu</a></div>
   </div>
 </header>
 
@@ -279,9 +311,8 @@
   <div class="news">
     <h2><span class="tag">News</span> Latest Updates</h2>
     <ul>
-      <li><span class="date">Jun 2026</span><span>Our proposal has been <strong>accepted at IEEE BIBM 2026</strong> — see you in Dallas this December!</span></li>
-      <li><span class="date">Upcoming</span><span>Call for Papers is open. Paper submissions are due <strong>September 27, 2026</strong>.</span></li>
-      <li><span class="date">Soon</span><span>Keynote speakers and program committee will be announced here.</span></li>
+      <li><span class="date">06/25/2026</span><span><strong>Call for Papers released.</strong> We invite submissions on human-AI interaction as digital indicators for early cognitive decline and caregiving.</span></li>
+      <li><span class="date">Deadline</span><span>Workshop paper submissions are due <strong>September 27, 2026</strong>.</span></li>
     </ul>
   </div>
 </div>
@@ -291,68 +322,37 @@
 
   <!-- OVERVIEW -->
   <section id="overview">
-    <div class="sec-label">About</div>
-    <h2>Overview</h2>
-    <p class="lead">Communication breakdown in everyday conversation is a sensitive marker of cognitive decline—but standard clinical tests often miss it.</p>
-    <p><strong>Alzheimer's disease and related dementias (ADRD),</strong> along with broader forms of age-related cognitive decline, are typically assessed using standardized clinical tests. Yet these assessments often fail to capture communication breakdowns that occur in everyday conversational routines—such as difficulty maintaining topics or repairing misunderstandings.<sup>1,2</sup> These breakdowns directly affect functioning and independence in the daily lives of older adults.<sup>3</sup></p>
-    <p>As AI caregiving systems like conversational agents become increasingly embedded in the lives of older adults, <strong>human–AI interaction provides a new, ecologically valid platform for assessing cognitive function in real-world contexts.</strong> These interactions generate conversational data that capture not only <em>what</em> is said, but <em>how</em> communication unfolds over time—revealing underlying patterns that reflect higher-level cognitive function.<sup>4</sup> This motivates the urgent need to study <strong>interaction-level markers of cognitive change</strong> beyond traditional clinical assessments.</p>
-    <p>This workshop brings together the <strong>computational modeling and clinical dementia research communities</strong> to identify and translate interaction-level signals of cognitive decline into clinically meaningful insights for caregiving. It aims to foster discussion on how such signals can be modeled as <strong>digital indicators</strong> and to explore their implications for real-world adaptive communication systems. The workshop spans three complementary areas: <strong>NLP, HCI, and clinical neuroscience.</strong></p>
+    <h2>Introduction to Workshop</h2>
+    <p class="lead">Welcome to the workshop on <strong>From Language to Daily Living: Human-AI Interaction as Digital Indicators for Early Cognitive Decline and Caregiving</strong>, held in conjunction with <a href="https://www3.cs.stonybrook.edu/~bibm2026/" target="_blank" rel="noopener">IEEE BIBM 2026 in Dallas, Texas</a>.</p>
+    <p>This workshop convenes researchers across <strong>NLP, HCI, AI for health, and clinical dementia science</strong> around a shared question: As conversational AI systems become increasingly embedded in the daily lives of older adults, how can human-AI interaction become an ecologically valid platform for detecting early cognitive change and informing caregiving? Our goal is to build a program that moves from <strong>language signals</strong> to <strong>interaction patterns</strong>, from interaction patterns to <strong>behavioral and digital indicators</strong>, and from these indicators to translational implications for care, monitoring, and adaptive communication systems.</p>
+    <p>We invite submissions with unpublished, original research describing recent advances related to this theme. Topics include language and discourse markers, conversational dynamics, multimodal interaction data, longitudinal modeling, clinically interpretable indicators, and AI-enabled caregiving systems. All submissions will undergo peer review by the workshop program committee.</p>
   </section>
 
   <!-- CALL FOR PAPERS -->
   <section id="cfp">
-    <div class="sec-label">Call for Papers</div>
-    <h2>Topics of Interest</h2>
-    <p>We welcome research papers, position papers, and work in progress on five themes:</p>
+    <h2>Call for Papers</h2>
+    <p>Topics of interest include, but are not limited to:</p>
 
-    <div class="topic">
-      <h3><span class="n">01</span> From Language to Interaction Signals</h3>
-      <ul>
-        <li>Speech, linguistic, and discourse features as indicators of cognitive decline</li>
-        <li>Acoustic and prosodic signals for detecting early cognitive change</li>
-        <li>Extending language-based assessment from isolated tasks to interactive settings</li>
-      </ul>
-    </div>
-    <div class="topic">
-      <h3><span class="n">02</span> From Interaction to Behavioral Indicators</h3>
-      <ul>
-        <li>Conversational dynamics (e.g., topic maintenance) as indicators of cognitive function</li>
-        <li>Response latency, repetition, and breakdown patterns in real-world interaction</li>
-        <li>Modeling communication as a dynamic process rather than static performance</li>
-      </ul>
-    </div>
-    <div class="topic">
-      <h3><span class="n">03</span> From Interaction Data to Digital Indicators</h3>
-      <ul>
-        <li>Computational methods for extracting interpretable interaction-level indicators</li>
-        <li>Longitudinal modeling of cognitive change from continuous interaction data</li>
-        <li>Multimodal integration of language, speech, and behavioral signals</li>
-        <li>Data-driven approaches for interaction-aware cognitive monitoring</li>
-      </ul>
-    </div>
-    <div class="topic">
-      <h3><span class="n">04</span> Translational Implications for Care &amp; Monitoring</h3>
-      <ul>
-        <li>Interaction-based indicators supporting clinical interpretation and caregiving decisions</li>
-        <li>Integration of interaction-derived signals into clinical and real-world monitoring workflows</li>
-        <li>Passive and continuous monitoring in AI-enabled environments</li>
-      </ul>
-    </div>
-    <div class="topic">
-      <h3><span class="n">05</span> Foundations: Ethics, Fairness &amp; Infrastructure</h3>
-      <ul>
-        <li>Privacy-preserving methods for continuous cognitive monitoring</li>
-        <li>Fairness and bias across linguistic and demographic populations</li>
-        <li>Datasets and evaluation frameworks for interaction-based cognitive research</li>
-        <li>Ethical and regulatory considerations for AI-assisted cognitive systems</li>
-      </ul>
-    </div>
-    <p class="muted" style="margin-top:18px">Submissions follow the IEEE BIBM 2026 workshop guidelines. Formatting instructions and the submission portal link will be posted here once available.</p>
+    <ul class="topic-list">
+      <li><strong>Language and Speech Signals:</strong> linguistic, discourse, acoustic, and prosodic markers for detecting early cognitive change.</li>
+      <li><strong>Interaction Dynamics:</strong> conversational patterns such as topic maintenance, repair, response latency, repetition, and breakdown in human-AI interaction.</li>
+      <li><strong>Digital and Multimodal Indicators:</strong> computational methods for extracting interpretable indicators from language, speech, behavioral, and longitudinal interaction data.</li>
+      <li><strong>Caregiving and Clinical Translation:</strong> interaction-based signals that support clinical interpretation, caregiving decisions, monitoring workflows, and adaptive communication systems.</li>
+      <li><strong>Responsible AI Foundations:</strong> privacy, fairness, datasets, evaluation frameworks, and ethical considerations for AI-assisted cognitive health systems.</li>
+    </ul>
+
+  </section>
+
+  <!-- SUBMISSION -->
+  <section id="submission">
+    <h2>Paper Submission</h2>
+    <p>Please submit a full-length paper of up to <strong>8 pages</strong> in IEEE two-column format through the <a href="https://wi-lab.com/cyberchair/2026/bibm26/scripts/submit.php?subarea=S48&amp;undisplay_detail=1&amp;wh=/cyberchair/2026/bibm26/scripts/ws_submit.php" target="_blank" rel="noopener">workshop submission portal</a>. Authors should follow the <a href="https://www3.cs.stonybrook.edu/~bibm2026/" target="_blank" rel="noopener">IEEE BIBM 2026 main conference instructions</a> and may download the IEEE conference templates <a href="http://www.ieee.org/conferences_events/conferences/publishing/templates.html" target="_blank" rel="noopener">here</a>.</p>
+    <p>The 8-page limit is a firm requirement and includes all content, including the main paper, references, and any appendices. Submissions should be double blind and should not include author names or affiliations. Electronic submissions in PDF or PostScript format are required.</p>
+    <p>All accepted workshop papers will be included in the main Conference Proceedings published by the IEEE Computer Society Press. Submissions should not be published elsewhere or under review in another workshop, conference, or journal.</p>
   </section>
 
   <!-- DATES -->
   <section id="dates">
-    <div class="sec-label">Timeline</div>
     <h2>Important Dates</h2>
     <table>
       <thead><tr><th>Milestone</th><th class="when">Date</th></tr></thead>
@@ -368,32 +368,71 @@
 
   <!-- SCHEDULE -->
   <section id="schedule">
-    <div class="sec-label">Program</div>
-    <h2>Tentative Schedule</h2>
-    <p>The workshop is a <strong>full-day event</strong> featuring keynote talks, oral paper sessions, and a panel discussion, with breaks for community exchange. A detailed agenda will be posted closer to the event.</p>
-    <table>
-      <thead><tr><th class="when">Time</th><th>Session</th></tr></thead>
-      <tbody>
-        <tr><td class="when">09:00 – 09:10</td><td>Opening Remarks</td></tr>
-        <tr><td class="when">09:10 – 09:50</td><td>Keynote I</td></tr>
-        <tr><td class="when">09:50 – 10:40</td><td>Oral Session 1 — Contributed Talks</td></tr>
-        <tr><td class="when">10:40 – 11:00</td><td>Coffee Break</td></tr>
-        <tr><td class="when">11:00 – 11:40</td><td>Keynote II</td></tr>
-        <tr><td class="when">11:40 – 12:30</td><td>Oral Session 2 — Contributed Talks</td></tr>
-        <tr><td class="when">12:30 – 13:45</td><td>Lunch Break</td></tr>
-        <tr><td class="when">13:45 – 14:45</td><td>Oral Session 3 — Contributed Talks</td></tr>
-        <tr><td class="when">14:45 – 15:45</td><td>Panel Discussion — Bridging NLP, HCI &amp; Clinical Science</td></tr>
-        <tr><td class="when">15:45 – 16:05</td><td>Coffee Break</td></tr>
-        <tr><td class="when">16:05 – 16:50</td><td>Interactive Discussion &amp; Open Problems</td></tr>
-        <tr><td class="when">16:50 – 17:00</td><td>Closing Remarks</td></tr>
-      </tbody>
-    </table>
-    <p class="table-note">Tentative — subject to change. Times shown in local Dallas time (CST).</p>
-    <div class="chips">
-      <span class="chip">Keynote talks</span>
-      <span class="chip">Oral sessions</span>
-      <span class="chip">Panel discussion</span>
-      <span class="chip">Hybrid participation</span>
+    <h2>Schedule To Be Announced</h2>
+    <p>The detailed workshop program has not yet been finalized. The final schedule will be determined after the paper submission and review process, based on the number of submissions, accepted papers, invited speakers, and coordination with the IEEE BIBM 2026 conference schedule.</p>
+    <p>Potential program components may include keynote talks, oral paper presentations, panel discussion, and community exchange sessions. A detailed agenda will be posted here once available.</p>
+  </section>
+
+  <!-- KEYNOTES -->
+  <section id="keynotes">
+    <h2>Keynote Speakers</h2>
+    <div class="speaker-grid">
+      <div class="speaker">
+        <a class="speaker-photo" href="https://jiayuzhou.github.io" target="_blank" rel="noopener">
+          <img src="keynote-jiayu-zhou.jpg" alt="Jiayu Zhou">
+        </a>
+        <div class="name"><a href="https://jiayuzhou.github.io" target="_blank" rel="noopener">Jiayu Zhou</a></div>
+        <div class="title">Associate Professor, School of Information, University of Michigan</div>
+        <p class="bio">Dr. Zhou's research spans large-scale machine learning, generative AI, AI for health, and AI+X. His recent work includes AI methods for early diagnosis of Alzheimer's disease, digital biomarkers from conversations and daily behavior, and multimodal health data integration.</p>
+      </div>
+      <div class="speaker">
+        <a class="speaker-photo" href="https://profiles.utsouthwestern.edu/profile/11587/c-munro-cullum.html" target="_blank" rel="noopener">
+          <img src="keynote-c-munro-cullum.png" alt="C. Munro Cullum">
+        </a>
+        <div class="name"><a href="https://profiles.utsouthwestern.edu/profile/11587/c-munro-cullum.html" target="_blank" rel="noopener">C. Munro Cullum</a></div>
+        <div class="title">Professor of Psychiatry, Neurology, and Neurological Surgery, UT Southwestern Medical Center</div>
+        <p class="bio">Dr. Cullum's work spans research, education, clinical service, and leadership in neuropsychology. His research includes cognitive assessment, dementia and memory disorders, risk factors and differential diagnosis of Alzheimer's disease and other neurodegenerative conditions, concussion, and telehealth applications in neuropsychology.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMITTEE -->
+  <section id="committee">
+    <div class="sec-label">Review</div>
+    <h2>Program Committee</h2>
+    <div class="committee-grid">
+      <div class="committee-member">
+        <div class="name">Kexin Yu</div>
+        <div class="aff">UT Southwestern</div>
+      </div>
+      <div class="committee-member">
+        <div class="name">Kimberly D. Mueller</div>
+        <div class="aff">University of Wisconsin-Madison</div>
+      </div>
+      <div class="committee-member">
+        <div class="name">Tamara Zubatiy</div>
+        <div class="aff">Barometer</div>
+      </div>
+      <div class="committee-member">
+        <div class="name">Jiaxin An</div>
+        <div class="aff">University of Texas at Austin</div>
+      </div>
+      <div class="committee-member">
+        <div class="name">Lotem Peled-Cohen</div>
+        <div class="aff">Technion - Israel Institute of Technology</div>
+      </div>
+      <div class="committee-member">
+        <div class="name">Maria R. Lima</div>
+        <div class="aff">Imperial College London</div>
+      </div>
+      <div class="committee-member">
+        <div class="name">Liu Chen</div>
+        <div class="aff">Harvard Medical School, Massachusetts General Hospital</div>
+      </div>
+      <div class="committee-member">
+        <div class="name">Yi Wu</div>
+        <div class="aff">University of Oklahoma</div>
+      </div>
     </div>
   </section>
 
@@ -405,51 +444,16 @@
       <div class="org">
         <div class="name">Ziming Liu</div>
         <div class="aff">University of Oklahoma</div>
-        <div class="role">Assistant Professor, CS</div>
-        <div class="bio">Researches human–AI interaction and computational modeling of communication in cognitive health. Leads the interaction-centered paradigm of the workshop, bridging NLP, HCI, and clinical applications.</div>
       </div>
       <div class="org">
         <div class="name">Hiroko Dodge</div>
         <div class="aff">Harvard Medical School · MGB</div>
-        <div class="role">Professor of Neurology</div>
-        <div class="bio">Studies social interaction and conversational engagement in cognitive health, leading large-scale longitudinal RCTs such as the I-CONECT study. Provides clinical guidance and context for the workshop.</div>
       </div>
       <div class="org">
         <div class="name">Wenpeng Yin</div>
         <div class="aff">Penn State University</div>
-        <div class="role">Assistant Professor, CS</div>
-        <div class="bio">Works on NLP and LLMs with an emphasis on human-centered AI and computational modeling of language, reasoning, and knowledge. Contributes NLP/LLM methodologies for modeling interaction-based signals.</div>
       </div>
     </div>
-  </section>
-
-  <!-- KEYNOTES -->
-  <section id="keynotes">
-    <div class="sec-label">Program</div>
-    <h2>Keynote Speakers</h2>
-    <div class="tba">
-      <div class="t">To be announced</div>
-      <div class="d">Keynote speakers will be confirmed and announced here in the coming months.</div>
-    </div>
-    <!-- Prospective keynote speakers (NOT yet contacted) kept here for reference:
-         Justine Cassell (Carnegie Mellon University) — human–AI interaction, conversational agents, social cognition.
-         Timothy Althoff (University of Washington) — language, behavior & health; conversational dynamics and health outcomes.
-         Publish only after invitations are accepted. -->
-  </section>
-
-  <!-- COMMITTEE -->
-  <section id="committee">
-    <div class="sec-label">Review</div>
-    <h2>Program Committee</h2>
-    <div class="tba">
-      <div class="t">To be announced</div>
-      <div class="d">The program committee is being assembled and will be listed here once confirmed.</div>
-    </div>
-    <!-- Prospective program committee (invitations pending, NOT yet contacted):
-         Frank Rudzicz (Dalhousie University); Brian MacWhinney (Carnegie Mellon University);
-         Kathleen C. Fraser (University of Ottawa); Munmun De Choudhury (Georgia Tech);
-         Carolyn Rosé (Carnegie Mellon University); Rada Mihalcea (University of Michigan).
-         Publish only after invitations are accepted. -->
   </section>
 
 </div>
@@ -460,7 +464,7 @@
   <div class="wrap">
     <div class="f-title">From Language to Daily Living</div>
     <p style="max-width:60ch">A workshop on human–AI interaction as digital indicators for early cognitive decline and their implications for caregiving, held in conjunction with IEEE BIBM 2026 in Dallas, TX.</p>
-    <p style="margin-top:6px">Contact: <a href="mailto:your-email@ou.edu">your-email@ou.edu</a> &nbsp;·&nbsp; <a href="https://ieeebibm.org/BIBM2026/" target="_blank" rel="noopener">IEEE BIBM 2026 →</a></p>
+    <p style="margin-top:6px"><a href="https://ieeebibm.org/BIBM2026/" target="_blank" rel="noopener">IEEE BIBM 2026 →</a></p>
 
     <div class="refs">
       <h4>References</h4>
